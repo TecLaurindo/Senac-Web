@@ -1,0 +1,76 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    height: 100vh;
+}
+
+header {
+    background-color: #ffcc66;
+    padding: 15px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0%;
+}
+
+nav ul li {
+    display: inline;
+    margin-left: 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: rgb(31, 29, 29);
+}
+
+nav ul li a:hover {
+    color: aliceblue;
+    background-color: rgb(238, 213, 71);
+    font-size: larger;
+    pad: 15px;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 14px;
+    margin: 0;
+}
+
+.container {
+    background-color: rgb(238, 198, 113);
+    display: flex;
+    height: 100%;
+    align-items:center;
+    justify-content: center;
+}
+
+.item-cachorro {
+    text-decoration: none;
+    color: #333;
+}
+
+.texto1 {
+    padding: 15px;
+    background-color: white;
+    margin: 15px;
+    height: 200px;
+    width: 300px;
+    border: 30px white;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.Dogadote {
+    border: #333;
+    border-radius: 10px;
+}
