@@ -1,0 +1,123 @@
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  position: fixed;
+  width: 100%;
+  background: #111;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar .logo {
+  color: #fff;
+  font-size: 22px;
+}
+
+.nav-links li {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.nav-links a:hover {
+  color: #00d9ff;
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  background: linear-gradient(to right, #0b0c10, #1f2833);
+  color: white;
+  padding-top: 150px;
+  text-align: center;
+}
+
+.hero h2 {
+  font-size: 40px;
+}
+
+.highlight {
+  color: #66fcf1;
+}
+
+.hero p {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #c5c6c7;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 12px 25px;
+  background: #45a29e;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.btn:hover {
+  background: #66fcf1;
+}
+
+/* SOBRE */
+.about,
+.projects,
+.contact {
+  padding: 80px 10%;
+  text-align: center;
+}
+
+/* PROJETOS */
+.project-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.project-card {
+  background: #eee;
+  padding: 20px;
+  border-radius: 8px;
+  transition: transform 0.3s;
+}
+
+.project-card:hover {
+  transform: scale(1.05);
+}
+
+.btn-sm {
+  display: inline-block;
+  margin-top: 15px;
+  background: #333;
+  color: #fff;
+  padding: 8px 15px;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.btn-sm:hover {
+  background: #000;
+}
+
+/* CONTATO */
+.contact p {
+  margin: 10px 0;
+}
+
+/* FOOTER */
+footer {
+  padding: 20px;
+  text-align: center;
+  background: #111;
+  color: #fff;
+}

@@ -1,4 +1,53 @@
-body {
-    background-color: aqua;
+/* Reset básico */
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  padding: 20px;
+  position: fixed;
+  width: 100%;
+  background: #111;
+  top: 0;
+}
+
+.navbar .logo {
+  font-size: 22px;
+  color: white;
+}
+
+.nav-links li {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 15px;
+}
+
+.nav-links a:hover {
+  color: #00d9ff;
+}
+
+.logo:hover{
+    font-size: 26px;
+    transition: 2s;
+}
+.hero {
+    height: 100vh;
+    background: linear-gradient(to right, #04060e, #024aff);
+    color: white;
+    padding-top: 150px;
     text-align: center;
 }
+
+
