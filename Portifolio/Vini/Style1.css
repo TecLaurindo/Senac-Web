@@ -75,3 +75,18 @@ footer { /* RODAPÉ FIXO onde mostra Direitos autorais e ETC.. */
     padding-top: 150px;
     text-align: center;
 }
+
+.projects {
+    height: 100vh;
+    background: linear-gradient(to right, #04060e, #024aff);
+    color: white;
+    padding-top: 150px;
+    text-align: center;
+}
+.contact {
+    height: 100vh;
+    background: linear-gradient(to right, #04060e, #024aff);
+    color: white;
+    padding-top: 150px;
+    text-align: center;
+}
