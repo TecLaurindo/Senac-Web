@@ -69,7 +69,9 @@ footer { /* RODAPÉ FIXO onde mostra Direitos autorais e ETC.. */
 }
 
 .about {
-    padding: 60px 20px;
-    background: #bb0707;
-    color: #333;
+    height: 100vh;
+    background: linear-gradient(to right, #04060e, #024aff);
+    color: white;
+    padding-top: 150px;
+    text-align: center;
 }
