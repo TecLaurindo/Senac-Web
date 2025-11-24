@@ -40,8 +40,14 @@
 
 .logo:hover{
     font-size: 26px;
-    transition: 2s;
+    transition: 0.5s;
 }
+
+.nav-links a:hover{
+  font-size: 17px;
+  transition: 0.5s;
+}
+
 .hero {
     height: 100vh;
     background: linear-gradient(to right, #04060e, #024aff);
