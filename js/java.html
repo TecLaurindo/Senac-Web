@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <h1>
+    perguntas
+    <p id="mensagem1"></p>
+    <p id="mensagem2"></p>
+    <p id="mensagem3"></p>
+
+    
+   
+   </h1>
+   <script>
+    let pergunta1 = ""
+    let pergunta2 = ""
+    let pergunta3 = ""
+    
+    pergunta1 = prompt("Qual seu nome")
+    pergunta2 = prompt("Qual sua idade")
+    pergunta3 = prompt("Qual ano vc nasceu")
+      
+    document.getElementById("mensagem1").textContent=pergunta1
+    document.getElementById("mensagem2").textContent=pergunta2
+    document.getElementById("mensagem3").textContent=pergunta3
+    
+   </script> 
+</body>
+</html>
