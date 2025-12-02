@@ -64,15 +64,6 @@
     border: 1px
 }
 
-footer { /* RODAPÉ FIXO onde mostra Direitos autorais e ETC.. */
-    background: #111;
-    color: white;
-    text-align: center;
-    padding: 9px 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
 
 .about {
     height: 100vh;
@@ -95,4 +86,15 @@ footer { /* RODAPÉ FIXO onde mostra Direitos autorais e ETC.. */
     color: white;
     padding-top: 150px;
     text-align: center;
+}
+
+
+footer { /* RODAPÉ FIXO onde mostra Direitos autorais e ETC.. */
+    background: #111;
+    color: white;
+    text-align: center;
+    padding: 9px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
