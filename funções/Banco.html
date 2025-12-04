@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini Banco Digital</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        
+        .saldo-container {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .saldo-titulo {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+        
+        .saldo-valor {
+            font-size: 36px;
+            font-weight: 700;
+        }
+        
+        .taxa-info {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #856404;
+            font-size: 14px;
+        }
+        
+        .taxa-info strong {
+            color: #e17055;
+        }
+        
+        .input-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .botoes-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        button {
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .depositar-btn {
+            background: linear-gradient(135deg, #42e695 0%, #3bb2b8 100%);
+            color: white;
+        }
+        
+        .sacar-btn {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            color: white;
+        }
+        
+        .ver-saldo-btn {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #333;
+        }
+        
+        .extrato-btn {
+            background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
+            color: #333;
+        }
+        
+        .calculadora-taxa {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            border: 1px dashed #dee2e6;
+        }
+        
+        .calculadora-taxa h4 {
+            color: #555;
+            margin-bottom: 10px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .taxa-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        
+        .taxa-valor {
+            font-weight: 600;
+        }
+        
+        .taxa-total {
+            border-top: 1px solid #dee2e6;
+            margin-top: 8px;
+            padding-top: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .historico-container {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #f0f0f0;
+        }
+        
+        .historico-titulo {
+            color: #555;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .historico-lista {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .historico-item {
+            padding: 12px 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+        
+        .historico-deposito {
+            border-left: 4px solid #42e695;
+        }
+        
+        .historico-saque {
+            border-left: 4px solid #ff9a9e;
+        }
+        
+        .historico-taxa {
+            border-left: 4px solid #fdcb6e;
+        }
+        
+        .resultado {
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .resultado.visivel {
+            opacity: 1;
+        }
+        
+        .sucesso {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .erro {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        .aviso {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🏦 Mini Banco Digital</h2>
+        
+        <div class="saldo-container">
+            <div class="saldo-titulo">SALDO DISPONÍVEL</div>
+            <div class="saldo-valor" id="saldoDisplay">R$ 0,00</div>
+        </div>
+        
+        <div class="taxa-info">
+            ⚠️ <strong>ATENÇÃO:</strong> Todos os saques têm taxa de 10% (o banco come 10% do valor)
+        </div>
+        
+        <div class="input-group">
+            <label for="valorInput">Valor (R$):</label>
+            <input 
+                type="number" 
+                id="valorInput" 
+                placeholder="Digite o valor" 
+                min="0" 
+                step="0.01"
+            />
+        </div>
+        
+        <div class="calculadora-taxa" id="calculadoraTaxa" style="display: none;">
+            <h4>🧮 Cálculo do Saque</h4>
+            <div class="taxa-item">
+                <span>Valor solicitado:</span>
+                <span class="taxa-valor" id="valorSolicitado">R$ 0,00</span>
+            </div>
+            <div class="taxa-item">
+                <span>Taxa do banco (10%):</span>
+                <span class="taxa-valor" id="valorTaxa">R$ 0,00</span>
+            </div>
+            <div class="taxa-item taxa-total">
+                <span>Total debitado da conta:</span>
+                <span class="taxa-valor" id="valorTotal">R$ 0,00</span>
+            </div>
+            <div class="taxa-item">
+                <span>Valor que você recebe:</span>
+                <span class="taxa-valor" id="valorRecebido">R$ 0,00</span>
+            </div>
+        </div>
+        
+        <div class="botoes-container">
+            <button class="depositar-btn" onclick="depositar()">
+                💰 Depositar
+            </button>
+            <button class="sacar-btn" onclick="sacar()">
+                💸 Sacar
+            </button>
+            <button class="ver-saldo-btn" onclick="verSaldo()">
+                📊 Ver Saldo
+            </button>
+            <button class="extrato-btn" onclick="verExtrato()">
+                📋 Ver Extrato
+            </button>
+        </div>
+        
+        <div class="historico-container">
+            <div class="historico-titulo">📈 Histórico de Transações</div>
+            <div class="historico-lista" id="historicoLista">
+                <!-- Histórico será adicionado aqui -->
+            </div>
+        </div>
+        
+        <div class="resultado" id="resultado"></div>
+    </div>
+
+    <script>
+        let saldo = 100.00; // Saldo inicial para testes
+        let historico = [];
+        const TAXA_SAQUE = 0.10; // 10% de taxa
+        
+        // Elementos DOM
+        const saldoDisplay = document.getElementById('saldoDisplay');
+        const valorInput = document.getElementById('valorInput');
+        const resultado = document.getElementById('resultado');
+        const historicoLista = document.getElementById('historicoLista');
+        const calculadoraTaxa = document.getElementById('calculadoraTaxa');
+        const valorSolicitado = document.getElementById('valorSolicitado');
+        const valorTaxa = document.getElementById('valorTaxa');
+        const valorTotal = document.getElementById('valorTotal');
+        const valorRecebido = document.getElementById('valorRecebido');
+        
+        // Atualizar display do saldo
+        function atualizarSaldoDisplay() {
+            saldoDisplay.textContent = `R$ ${saldo.toFixed(2).replace('.', ',')}`;
+        }
+        
+        // Mostrar mensagem
+        function mostrar(msg, tipo = 'info') {
+            resultado.textContent = msg;
+            resultado.className = 'resultado visivel ' + tipo;
+            setTimeout(() => {
+                resultado.className = 'resultado';
+            }, 5000);
+        }
+        
+        // Adicionar ao histórico
+        function adicionarHistorico(tipo, valor, detalhes = '') {
+            const data = new Date();
+            const hora = data.toLocaleTimeString('pt-BR', { 
+                hour: '2-digit', 
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            
+            const transacao = {
+                tipo: tipo,
+                valor: valor,
+                detalhes: detalhes,
+                data: hora,
+                saldoAnterior: saldo
+            };
+            
+            historico.unshift(transacao); // Adiciona no início
+            
+            // Atualizar lista na tela
+            atualizarHistoricoDisplay();
+        }
+        
+        // Atualizar histórico na tela
+        function atualizarHistoricoDisplay() {
+            historicoLista.innerHTML = '';
+            
+            historico.slice(0, 6).forEach(transacao => {
+                const item = document.createElement('div');
+                
+                let classe = `historico-item historico-${transacao.tipo}`;
+                let tipoTexto = '';
+                let sinal = '';
+                let cor = '';
+                let valorFormatado = `R$ ${Math.abs(transacao.valor).toFixed(2).replace('.', ',')}`;
+                
+                switch(transacao.tipo) {
+                    case 'depósito':
+                        tipoTexto = 'Depósito';
+                        sinal = '+';
+                        cor = '#42e695';
+                        classe += ' historico-deposito';
+                        break;
+                    case 'saque':
+                        tipoTexto = 'Saque';
+                        sinal = '-';
+                        cor = '#ff9a9e';
+                        classe += ' historico-saque';
+                        break;
+                    case 'taxa':
+                        tipoTexto = 'Taxa do Banco';
+                        sinal = '-';
+                        cor = '#fdcb6e';
+                        classe += ' historico-taxa';
+                        break;
+                }
+                
+                item.className = classe;
+                
+                item.innerHTML = `
+                    <div>
+                        <strong>${tipoTexto}</strong>
+                        <div style="font-size: 12px; color: #777;">${transacao.data}</div>
+                        ${transacao.detalhes ? `<div style="font-size: 11px; color: #999;">${transacao.detalhes}</div>` : ''}
+                    </div>
+                    <div style="color: ${cor}; font-weight: bold;">
+                        ${sinal} ${valorFormatado}
+                    </div>
+                `;
+                
+                historicoLista.appendChild(item);
+            });
+        }
+        
+        // Atualizar calculadora de taxa
+        function atualizarCalculadoraTaxa(valor) {
+            const taxa = valor * TAXA_SAQUE;
+            const totalDebitado = valor + taxa;
+            const valorReceber = valor;
+            
+            valorSolicitado.textContent = `R$ ${valor.toFixed(2).replace('.', ',')}`;
+            valorTaxa.textContent = `R$ ${taxa.toFixed(2).replace('.', ',')}`;
+            valorTotal.textContent = `R$ ${totalDebitado.toFixed(2).replace('.', ',')}`;
+            valorRecebido.textContent = `R$ ${valorReceber.toFixed(2).replace('.', ',')}`;
+            
+            calculadoraTaxa.style.display = 'block';
+        }
+        
+        // Esconder calculadora de taxa
+        function esconderCalculadoraTaxa() {
+            calculadoraTaxa.style.display = 'none';
+        }
+        
+        // Função para pegar valor do input
+        function pegarValor() {
+            const valor = parseFloat(valorInput.value);
+            return valor;
+        }
+        
+        // Limpar input
+        function limparInput() {
+            valorInput.value = '';
+            valorInput.focus();
+            esconderCalculadoraTaxa();
+        }
+        
+        // Depositar
+        function depositar() {
+            const valor = pegarValor();
+            
+            if (isNaN(valor) || valor <= 0) {
+                mostrar("Por favor, digite um valor válido para depósito (maior que zero).", "erro");
+                return;
+            }
+            
+            saldo += valor;
+            adicionarHistorico('depósito', valor);
+            atualizarSaldoDisplay();
+            mostrar(`Depósito de R$ ${valor.toFixed(2).replace('.', ',')} realizado com sucesso!`, "sucesso");
+            limparInput();
+        }
+        
+        // Sacar (com taxa de 10%)
+        function sacar() {
+            const valor = pegarValor();
+            
+            if (isNaN(valor) || valor <= 0) {
+                mostrar("Por favor, digite um valor válido para saque (maior que zero).", "erro");
+                return;
+            }
+            
+            const taxa = valor * TAXA_SAQUE;
+            const totalDebitado = valor + taxa;
+            const valorReceber = valor;
+            
+            // Atualizar calculadora antes de confirmar
+            atualizarCalculadoraTaxa(valor);
+            
+            if (totalDebitado > saldo) {
+                mostrar(`Saldo insuficiente! Você precisa de R$ ${totalDebitado.toFixed(2)} (valor + taxa) para sacar R$ ${valor.toFixed(2)}.`, "erro");
+                return;
+            }
+            
+            // Confirmar saque com taxa
+            const confirmar = confirm(
+                `💸 CONFIRMAR SAQUE\n\n` +
+                `Valor solicitado: R$ ${valor.toFixed(2)}\n` +
+                `Taxa do banco (10%): R$ ${taxa.toFixed(2)}\n` +
+                `Total debitado: R$ ${totalDebitado.toFixed(2)}\n` +
+                `Você receberá: R$ ${valorReceber.toFixed(2)}\n\n` +
+                `Deseja continuar?`
+            );
+            
+            if (!confirmar) {
+                mostrar("Saque cancelado pelo usuário.", "aviso");
+                esconderCalculadoraTaxa();
+                return;
+            }
+            
+            // Realizar débitos
+            saldo -= totalDebitado;
+            
+            // Registrar transações no histórico
+            adicionarHistorico('saque', valor, `Recebido: R$ ${valorReceber.toFixed(2)}`);
+            adicionarHistorico('taxa', taxa, `Taxa de 10% sobre R$ ${valor.toFixed(2)}`);
+            
+            atualizarSaldoDisplay();
+            mostrar(
+                `Saque realizado!<br>` +
+                `💰 Você recebeu: R$ ${valorReceber.toFixed(2).replace('.', ',')}<br>` +
+                `🏦 O banco comeu: R$ ${taxa.toFixed(2).replace('.', ',')}<br>` +
+                `📉 Total debitado: R$ ${totalDebitado.toFixed(2).replace('.', ',')}`,
+                "aviso"
+            );
+            
+            limparInput();
+        }
+        
+        // Ver saldo
+        function verSaldo() {
+            mostrar(`Seu saldo atual é: R$ ${saldo.toFixed(2).replace('.', ',')}`, "info");
+            esconderCalculadoraTaxa();
+        }
+        
+        // Ver extrato
+        function verExtrato() {
+            if (historico.length === 0) {
+                mostrar("Não há transações no histórico.", "info");
+                return;
+            }
+            
+            let extrato = "📋 EXTRATO BANCÁRIO\n";
+            extrato += "⚠️ Taxa de saque: 10%\n\n";
+            
+            let totalDepositos = 0;
+            let totalSaques = 0;
+            let totalTaxas = 0;
+            
+            historico.forEach(transacao => {
+                const hora = transacao.data;
+                let linha = `${hora} - `;
+                
+                switch(transacao.tipo) {
+                    case 'depósito':
+                        linha += `Depósito: +R$ ${transacao.valor.toFixed(2)}`;
+                        totalDepositos += transacao.valor;
+                        break;
+                    case 'saque':
+                        linha += `Saque: -R$ ${transacao.valor.toFixed(2)}`;
+                        totalSaques += transacao.valor;
+                        break;
+                    case 'taxa':
+                        linha += `Taxa do banco: -R$ ${transacao.valor.toFixed(2)}`;
+                        totalTaxas += transacao.valor;
+                        break;
+                }
+                
+                if (transacao.detalhes) {
+                    linha += ` (${transacao.detalhes})`;
+                }
+                
+                extrato += linha + '\n';
+            });
+            
+            extrato += `\n─── RESUMO ───\n`;
+            extrato += `Total de depósitos: R$ ${totalDepositos.toFixed(2)}\n`;
+            extrato += `Total de saques: R$ ${totalSaques.toFixed(2)}\n`;
+            extrato += `Total de taxas: R$ ${totalTaxas.toFixed(2)}\n`;
+            extrato += `Saldo atual: R$ ${saldo.toFixed(2)}`;
+            
+            alert(extrato);
+            esconderCalculadoraTaxa();
+        }
+        
+        // Mostrar calculadora quando digitar no input (para saques)
+        valorInput.addEventListener('input', function() {
+            const valor = pegarValor();
+            if (!isNaN(valor) && valor > 0) {
+                atualizarCalculadoraTaxa(valor);
+            } else {
+                esconderCalculadoraTaxa();
+            }
+        });
+        
+        // Permitir usar Enter para depósito
+        valorInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                depositar();
+            }
+        });
+        
+        // Inicializar
+        atualizarSaldoDisplay();
+        adicionarHistorico('depósito', 100.00, 'Saldo inicial');
+        
+        // Mensagem inicial
+        setTimeout(() => {
+            mostrar("💡 Dica: Ao sacar, o banco cobra 10% de taxa!", "aviso");
+        }, 1000);
+    </script>
+</body>
+</html>
