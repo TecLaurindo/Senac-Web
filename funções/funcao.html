@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mini Banco</title>
+  </head>
+  <body>
+    <h2>Mini Banco</h2>
+
+    <input id="meuInput" type="text" placeholder="Digite um valor" />
+
+    <button onclick="depositar()">Depositar</button>
+    <button onclick="sacar()">Sacar</button>
+    <button onclick="verSaldo()">Ver saldo</button>
+
+    <p id="resultado"></p>
+
+    <script>
+      let saldo = 0;
+
+      function mostrar(msg) {
+        document.getElementById("resultado").innerText = msg;
+      }
+
+      function pegarValor() {
+        return Number(document.getElementById("meuInput").value);
+      }
+
+      function depositar() {
+        const valor = pegarValor();
+        if (isNaN(valor) || valor <= 10%) {
+          return mostrar("Digite um valor válido para depósito.");
+        }
+        saldo += valor;
+        mostrar(
+          "Depósito de R$ " + valor + " realizado. Novo saldo: R$ " + saldo
+        );
+      }
+
+      function sacar() {
+        const valor = pegarValor();
+        if (isNaN(valor) || valor <= 0) {
+          return mostrar("Digite um valor válido para saque.");
+        }
+        if (valor > saldo) {
+          return mostrar("Saldo insuficiente!");
+        }
+        saldo -= valor;
+        mostrar("Saque de R$ " + valor + " realizado. Novo saldo: R$ " + saldo);
+      }
+
+      function verSaldo() {
+        mostrar("Saldo atual: R$ " + saldo);
+      }
+    </script>
+  </body>
+</html>
