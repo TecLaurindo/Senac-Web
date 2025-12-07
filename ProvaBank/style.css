@@ -1,0 +1,401 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Login/Cadastro */
+.login-container {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    max-width: 500px;
+    margin: 50px auto;
+}
+
+.login-container h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+}
+
+.form-container {
+    position: relative;
+    min-height: 400px;
+}
+
+.form {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.form.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: all;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #667eea;
+    outline: none;
+}
+
+.btn {
+    padding: 14px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+}
+
+.toggle-form {
+    text-align: center;
+    margin-top: 20px;
+    color: #666;
+}
+
+.toggle-form a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.toggle-form a:hover {
+    text-decoration: underline;
+}
+
+.info-box {
+    background: #f8f9ff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 30px;
+    border-left: 4px solid #667eea;
+}
+
+.info-box h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.info-box ul {
+    list-style: none;
+}
+
+.info-box li {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.info-box li:last-child {
+    border-bottom: none;
+}
+
+/* Dashboard */
+header {
+    background: white;
+    border-radius: 15px;
+    padding: 20px 30px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#userName {
+    font-weight: 600;
+    color: #333;
+}
+
+.btn-secondary {
+    background: #f8f9fa;
+    color: #333;
+    border: 2px solid #e0e0e0;
+}
+
+.btn-secondary:hover {
+    background: #e9ecef;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.card h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+.saldo-card .saldo {
+    font-size: 3em;
+    font-weight: 700;
+    color: #28a745;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.info-taxas {
+    background: #fff8e1;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 20px;
+    border-left: 4px solid #ffc107;
+}
+
+.info-taxas ul {
+    list-style: none;
+    margin-top: 10px;
+}
+
+.info-taxas li {
+    padding: 5px 0;
+    color: #666;
+}
+
+.operacao {
+    background: #f8f9ff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.operacao:last-child {
+    margin-bottom: 0;
+}
+
+.operacao h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.taxa-info {
+    color: #666;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+}
+
+.taxa-info.alerta {
+    color: #dc3545;
+    font-weight: 600;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.input-group input, .input-group select {
+    flex: 1;
+    min-width: 150px;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.btn-success {
+    background: #28a745;
+    color: white;
+    min-width: 120px;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+    min-width: 120px;
+}
+
+.btn-warning {
+    background: #ffc107;
+    color: #333;
+    min-width: 120px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.info-calculado {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background: #e7f3ff;
+    color: #0066cc;
+    font-size: 0.9em;
+}
+
+/* Empréstimo */
+#emprestimoStatus {
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background: #e7f3ff;
+}
+
+.parcelas-container {
+    margin-top: 20px;
+}
+
+#listaParcelas {
+    list-style: none;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+#listaParcelas li {
+    padding: 10px;
+    margin: 5px 0;
+    background: #f8f9ff;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.parcela-paga {
+    opacity: 0.6;
+    text-decoration: line-through;
+}
+
+/* Histórico */
+.historico {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.transacao-item {
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 4px solid;
+}
+
+.transacao-deposito {
+    background: #d4edda;
+    border-left-color: #28a745;
+}
+
+.transacao-saque {
+    background: #f8d7da;
+    border-left-color: #dc3545;
+}
+
+.transacao-emprestimo {
+    background: #fff3cd;
+    border-left-color: #ffc107;
+}
+
+.transacao-parcela {
+    background: #cce5ff;
+    border-left-color: #0066cc;
+}
+
+.transacao-valor {
+    font-weight: 600;
+}
+
+.transacao-data {
+    font-size: 0.8em;
+    color: #666;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .login-container {
+        margin: 20px auto;
+        padding: 20px;
+    }
+    
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+    
+    .input-group {
+        flex-direction: column;
+    }
+    
+    .input-group input, .input-group select, .btn {
+        width: 100%;
+    }
+    
+    header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+}

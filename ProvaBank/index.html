@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco Web - Login</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="login-container">
+            <h1>Banco Web</h1>
+            <div class="form-container">
+                <!-- Formulário de Cadastro -->
+                <form id="cadastroForm" class="form active">
+                    <h2>Criar Nova Conta</h2>
+                    <div class="form-group">
+                        <label for="nome">Nome Completo:</label>
+                        <input type="text" id="nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="emailCadastro">Email:</label>
+                        <input type="email" id="emailCadastro" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="senhaCadastro">Senha:</label>
+                        <input type="password" id="senhaCadastro" minlength="6" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Criar Conta Corrente</button>
+                    <p class="toggle-form">Já tem uma conta? <a href="#" id="loginLink">Faça login</a></p>
+                </form>
+
+                <!-- Formulário de Login -->
+                <form id="loginForm" class="form">
+                    <h2>Login</h2>
+                    <div class="form-group">
+                        <label for="emailLogin">Email:</label>
+                        <input type="email" id="emailLogin" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="senhaLogin">Senha:</label>
+                        <input type="password" id="senhaLogin" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Entrar</button>
+                    <p class="toggle-form">Não tem conta? <a href="#" id="cadastroLink">Crie uma agora</a></p>
+                </form>
+            </div>
+            
+            <div class="info-box">
+                <h3>Taxas do Banco:</h3>
+                <ul>
+                    <li>💰 Depósito: <strong>7%</strong> de taxa</li>
+                    <li>💸 Saque: <strong>70%</strong> de taxa</li>
+                    <li>🏦 Conta Corrente Obrigatória</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

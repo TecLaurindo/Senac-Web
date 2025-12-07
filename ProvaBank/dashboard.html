@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco Web - Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Banco Web</h1>
+            <div class="user-info">
+                <span id="userName"></span>
+                <button id="logoutBtn" class="btn btn-secondary">Sair</button>
+            </div>
+        </header>
+
+        <div class="dashboard">
+            <!-- Saldo -->
+            <div class="card saldo-card">
+                <h2>Saldo Disponível</h2>
+                <div class="saldo" id="saldoAtual">R$ 0,00</div>
+                <div class="info-taxas">
+                    <p>⚠️ Atenção às taxas:</p>
+                    <ul>
+                        <li>Depósito: 7% de taxa</li>
+                        <li>Saque: 70% de taxa</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Operações Bancárias -->
+            <div class="card operacoes-card">
+                <h2>Operações</h2>
+                
+                <!-- Depósito -->
+                <div class="operacao">
+                    <h3>Depósito</h3>
+                    <p class="taxa-info">Taxa: 7% do valor depositado</p>
+                    <div class="input-group">
+                        <input type="number" id="valorDeposito" placeholder="Valor em R$" min="1" step="0.01">
+                        <button onclick="realizarDeposito()" class="btn btn-success">Depositar</button>
+                    </div>
+                    <p id="infoDeposito" class="info-calculado"></p>
+                </div>
+
+                <!-- Saque -->
+                <div class="operacao">
+                    <h3>Saque</h3>
+                    <p class="taxa-info alerta">Taxa: 70% do valor sacado</p>
+                    <div class="input-group">
+                        <input type="number" id="valorSaque" placeholder="Valor em R$" min="1" step="0.01">
+                        <button onclick="realizarSaque()" class="btn btn-danger">Sacar</button>
+                    </div>
+                    <p id="infoSaque" class="info-calculado"></p>
+                </div>
+            </div>
+
+            <!-- Empréstimo -->
+            <div class="card emprestimo-card">
+                <h2>Empréstimo</h2>
+                <div id="emprestimoStatus">
+                    <p>Carregando status do empréstimo...</p>
+                </div>
+                
+                <div class="operacao" id="formEmprestimo">
+                    <h3>Solicitar Empréstimo</h3>
+                    <div class="input-group">
+                        <input type="number" id="valorEmprestimo" placeholder="Valor em R$" min="100" step="100">
+                        <select id="parcelasEmprestimo">
+                            <option value="6">6 parcelas</option>
+                            <option value="12" selected>12 parcelas</option>
+                            <option value="24">24 parcelas</option>
+                        </select>
+                        <button onclick="solicitarEmprestimo()" class="btn btn-warning">Solicitar</button>
+                    </div>
+                </div>
+
+                <!-- Parcelas em Aberto -->
+                <div id="parcelasAberto" class="parcelas-container">
+                    <h3>Parcelas em Aberto</h3>
+                    <ul id="listaParcelas"></ul>
+                </div>
+            </div>
+
+            <!-- Histórico -->
+            <div class="card historico-card">
+                <h2>Histórico de Transações</h2>
+                <div class="historico" id="historicoTransacoes">
+                    <p>Nenhuma transação realizada.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/banco.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/utils.js"></script>
+    <script>
+        // Inicializar dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!verificarAutenticacao()) {
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            const conta = obterContaAtual();
+            if (conta) {
+                document.getElementById('userName').textContent = conta.nome;
+                atualizarDashboard();
+            }
+        });
+
+        // Logout
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            localStorage.removeItem('contaAtual');
+            window.location.href = 'index.html';
+        });
+
+        // Calcular valores em tempo real
+        document.getElementById('valorDeposito').addEventListener('input', calcularDeposito);
+        document.getElementById('valorSaque').addEventListener('input', calcularSaque);
+    </script>
+</body>
+</html>
